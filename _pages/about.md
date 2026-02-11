@@ -23,24 +23,33 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 
 
 # 🔥 News
-- *2025.09*: &nbsp;🎉 Our paper about *Minimizing Side-Effects when Repairing Deep Nerual Networks (DiMP)* was accepted by **TOSEM** after major revision! This is the first **TOSEM** paper in our group!
+- *2025.09*: &nbsp;🎉 Our paper about *Minimizing Side-Effects when Repairing Deep Nerual Networks (DiMP)* was accepted by **TOSEM** after major revision! This is the first TOSEM paper in our group!
 
 # 📝 Publications 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2016</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
+## Representative Works
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">TOSEM</div><img src='images/smir_workflow.jpg' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
+[SMiR: Minimizing Side-Effects in Repairing Specific Misclassifications for Deep Neural Networks](https://dl.acm.org/doi/10.1145/3771545)
 
-[Deep Residual Learning for Image Recognition](https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf)
 
-**Kaiming He**, Xiangyu Zhang, Shaoqing Ren, Jian Sun
+**Haoran Li**, Shihai Wang, Bin Liu, Shiteng Fei, Wentao Wu, Yu Liu
 
-[**Project**](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=DhtAFkwAAAAJ&citation_for_view=DhtAFkwAAAAJ:ALROH1vI_8AC) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
+[**Code**](https://github.com/AnonymousSE4AI/SMiR) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
 
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
+-  We propose **SMiR**, an effective repair framework for addressing specific misclassifications with marginal accuracy loss. Rather than patching the original model, our method localizes and recovers the distorted feature dimensions to mitigate their negative impact on the distinction between specific classes. Moreover, SMiR narrows the scope of repair to the filtered suspect set, protecting other well-trained decision boundaries from disturbance. On average, our approach repairs 27%-36.2% more specific misclassifications than the baselines, while introducing only 7.8%-70.9% as many new errors. Besides, SMiR maintains state-of-the-art performance on safety-critical datasets.
+
+- </div>
 </div>
-</div>
 
-- [Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet](https://github.com), A, B, C, **CVPR 2020**
+
+
+## All Publications
+- [An intelligent design system for tailored metamaterial properties](https://www.sciencedirect.com/science/article/abs/pii/S0020740324006362). Jipeng Cui, Yaoyu Wang, Liangchi Zhang, **Haoran Li**. International Journal of Mechanical Sciences (**IJMS**, JCR-Q1), 2024
+- A slice-level software vulnerability detection method based on hyperbolic gated graph neural network. Yu Liu, Bin Liu, Shihai Wang, Tengfei Shi, **Haoran Li**, Shudi Guo. Frontiers of Computer Science (**FCS**, CCF-B, JCR-Q1), 2026.
+
+
 
 # 🎖 Honors and Awards
 - *2020.12* National Scholarship (Top 1%)

@@ -6,8 +6,8 @@
 # `jekyll serve`. If you change this file, please restart the server process.
 
 # Site Settings
-title                    : "Haoran Li"
-description              : "Haoran Li's personal homepage."
+title                    : "Haoran Li (李浩然)"
+description              : "Ph.D. student at BUAA, focusing on SE4AI, testing and repair for deep neural network (DNN)."
 repository               : "Ryan-LHR/acad-homepage.github.io"
 google_scholar_stats_use_cdn : true
 
