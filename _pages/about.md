@@ -38,13 +38,12 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 
 **TOSEM** (<span style="color:#d62728;"><strong>CCF-A</strong></span>)
 
-[**Paper**](https://dl.acm.org/doi/pdf/10.1145/3771545) | [**Code**](https://github.com/AnonymousSE4AI/SMiR) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
-
 <span>
 <a href="https://dl.acm.org/doi/pdf/10.1145/3771545"><strong>Paper</strong></a> |
 <a href="https://github.com/AnonymousSE4AI/SMiR"><strong>Code</strong></a>
-<strong><span class="show_paper_citations" data="DhtAFkwAAAAJ:ALROH1vI_8AC"></span></strong>
+<!-- <strong><span class="show_paper_citations" data="DhtAFkwAAAAJ:ALROH1vI_8AC"></span></strong> -->
 </span>
+
 
 -  We propose **SMiR**, an effective repair framework for addressing specific misclassifications with marginal accuracy loss. Rather than patching the original model, our method localizes and recovers the distorted feature dimensions to mitigate their negative impact on the distinction between specific classes. Moreover, SMiR narrows the scope of repair to the filtered suspect set, protecting other well-trained decision boundaries from disturbance. On average, our approach repairs 27%-36.2% more specific misclassifications than the baselines, while introducing only 7.8%-70.9% as many new errors. Besides, SMiR maintains state-of-the-art performance on safety-critical datasets.
 
