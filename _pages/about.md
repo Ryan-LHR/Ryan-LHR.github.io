@@ -23,7 +23,7 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 
 
 # 🔥 News
-- *2025.09*: &nbsp;🎉 Our paper about *Minimizing Side-Effects when Repairing Deep Nerual Networks (DiMP)* was accepted by **TOSEM** after major revision! This is the first TOSEM paper in our group!
+- *2025.09*: &nbsp;🎉 Our paper on *Minimizing Side-Effects when Repairing Specific Misclassifications for Deep Neural Networks (SMiR)* has been accepted by **TOSEM**! This is the first TOSEM paper in our group!
 
 # 📝 Publications 
 
@@ -36,7 +36,9 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 
 **Haoran Li**, Shihai Wang, Bin Liu, Shiteng Fei, Wentao Wu, Yu Liu
 
-[**Code**](https://github.com/AnonymousSE4AI/SMiR) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
+**TOSEM** (<span style="color:#d62728;"><strong>CCF-A</strong></span>)
+
+[**Paper**](https://dl.acm.org/doi/pdf/10.1145/3771545) | [**Code**](https://github.com/AnonymousSE4AI/SMiR) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
 
 -  We propose **SMiR**, an effective repair framework for addressing specific misclassifications with marginal accuracy loss. Rather than patching the original model, our method localizes and recovers the distorted feature dimensions to mitigate their negative impact on the distinction between specific classes. Moreover, SMiR narrows the scope of repair to the filtered suspect set, protecting other well-trained decision boundaries from disturbance. On average, our approach repairs 27%-36.2% more specific misclassifications than the baselines, while introducing only 7.8%-70.9% as many new errors. Besides, SMiR maintains state-of-the-art performance on safety-critical datasets.
 
@@ -46,9 +48,11 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 
 
 ## All Publications
-- [An intelligent design system for tailored metamaterial properties](https://www.sciencedirect.com/science/article/abs/pii/S0020740324006362). Jipeng Cui, Yaoyu Wang, Liangchi Zhang, **Haoran Li**. International Journal of Mechanical Sciences (**IJMS**, JCR-Q1), 2024
 - A slice-level software vulnerability detection method based on hyperbolic gated graph neural network. Yu Liu, Bin Liu, Shihai Wang, Tengfei Shi, **Haoran Li**, Shudi Guo. Frontiers of Computer Science (**FCS**, CCF-B, JCR-Q1), 2026.
 
+- [An intelligent design system for tailored metamaterial properties](https://www.sciencedirect.com/science/article/abs/pii/S0020740324006362). Jipeng Cui, Yaoyu Wang, Liangchi Zhang, **Haoran Li**. International Journal of Mechanical Sciences (**IJMS**, JCR-Q1), 2024
+
+- [TSDTest: A Efficient Coverage Guided Two-Stage Testing for Deep Learning Systems](https://ieeexplore.ieee.org/document/10077070). **Haoran Li**, Shihai Wang, Tengfei Shi, Xinyue Fang, Jian Chen. 2022 IEEE 22nd International Conference on Software Quality, Reliability, and Security Companion (QRS-C 2022), 2022.
 
 
 # 🎖 Honors and Awards
