@@ -59,6 +59,7 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 
 - [TSDTest: A Efficient Coverage Guided Two-Stage Testing for Deep Learning Systems](https://ieeexplore.ieee.org/document/10077070). **Haoran Li**, Shihai Wang, Tengfei Shi, Xinyue Fang, Jian Chen. 2022 IEEE 22nd International Conference on Software Quality, Reliability, and Security Companion (QRS-C 2022), 2022.
 
+- [Generating Adversarial Samples Based on the Attack Robust Training Model](https://ieeexplore.ieee.org/abstract/document/10727083). Tengfei Shi, Shihai Wang, Haoran Li, Shudi Guo, Yu Liu. 2024 IEEE 24nd International Conference on Software Quality, Reliability, and Security Companion (QRS-C 2024), 2024.
 
 # 🎖 Honors and Awards
 - *2020.12* National Scholarship (Top 1%)
