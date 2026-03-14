@@ -36,7 +36,7 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 
 **Haoran Li**, Shihai Wang, Bin Liu, Shiteng Fei, Wentao Wu, Yu Liu
 
-**TOSEM** (<span style="color:#d62728;"><strong>CCF-A</strong></span>)
+**TOSEM** (<span style="color:#d62728;"><strong>CCF-A</strong></span>, JCR-Q1)
 
 <span>
 <a href="https://dl.acm.org/doi/pdf/10.1145/3771545"><strong>Paper</strong></a> |
@@ -53,7 +53,7 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 
 
 ## All Publications
-- A slice-level software vulnerability detection method based on hyperbolic gated graph neural network. Yu Liu, Bin Liu, Shihai Wang, Tengfei Shi, **Haoran Li**, Shudi Guo. Frontiers of Computer Science (**FCS**, CCF-B, JCR-Q1), 2026.
+- [A slice-level software vulnerability detection method based on hyperbolic gated graph neural network](https://journal.hep.com.cn/fcs/EN/10.1007/s11704-026-50989-1). Yu Liu, Bin Liu, Shihai Wang, Tengfei Shi, **Haoran Li**, Shudi Guo. Frontiers of Computer Science (**FCS**, CCF-B, JCR-Q1), 2026.
 
 - [An intelligent design system for tailored metamaterial properties](https://www.sciencedirect.com/science/article/abs/pii/S0020740324006362). Jipeng Cui, Yaoyu Wang, Liangchi Zhang, **Haoran Li**. International Journal of Mechanical Sciences (**IJMS**, JCR-Q1), 2024
 
