@@ -59,7 +59,7 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 
 **Haoran Li**, Shihai Wang, Bin Liu, Jialuo Chen, Wenjing Zhu, Yu Liu, Shiteng Fei, Shudi Guo;
 
-**ASE-2026** (<span style="color:#d62728;"><strong>CCF-A</strong></span>, CCF-A)
+**ASE-2026** (<span style="color:#d62728;"><strong>CCF-A</strong></span>)
 
 <span>
 <a href="XX"><strong>Paper</strong></a> |
@@ -96,6 +96,7 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 
 # 💬 Invited Talks
 - <!--*2021.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. -->
+<!-- - *2021.06* ... -->
 
 # 💻 Internships
 - *2026.07 - now*, [Huawei](https://www.huawei.com/en/) - 2012 Laboratories, China.
