@@ -52,7 +52,7 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ASE-2026</div><img src='images/dufp_workflow.jpg' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ASE-2026</div><img src='images/dufp_workflow.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 [When Ambiguity Meets Atypicality: Dual-Perspective Test Input Prioritization for DNNs](https://github.com/Ryan-LHR/DuFP)
 
