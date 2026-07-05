@@ -23,6 +23,7 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 
 
 # 🔥 News
+- *2026.07*: &nbsp;🎉 Our paper on *When Ambiguity Meets Atypicality: Dual-Perspective Test Input Prioritization for DNNs (DuFP)* has been **directly accepted** by **ASE 2026** (115/1,236 reviewed submissions, top 9.3%)!
 - *2025.09*: &nbsp;🎉 Our paper on *Minimizing Side-Effects when Repairing Specific Misclassifications for Deep Neural Networks (SMiR)* has been accepted by **TOSEM**! This is the first TOSEM paper in our group!
 
 # 📝 Publications 
@@ -48,10 +49,12 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 -  We propose **SMiR**, an effective repair framework for addressing specific misclassifications with marginal accuracy loss. Rather than patching the original model, our method localizes and recovers the distorted feature dimensions to mitigate their negative impact on the distinction between specific classes. Moreover, SMiR narrows the scope of repair to the filtered suspect set, protecting other well-trained decision boundaries from disturbance. On average, our approach repairs 27%-36.2% more specific misclassifications than the baselines, while introducing only 7.8%-70.9% as many new errors. Besides, SMiR maintains state-of-the-art performance on safety-critical datasets.
 
 
+</div>
+</div>
 
-<!-- <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ASE-2026</div><img src='images/smir_workflow.jpg' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ASE-2026</div><img src='images/dufp_workflow.jpg' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
-[When Ambiguity Meets Atypicality: Dual-Perspective Test Input Prioritization for DNNs](https://dl.acm.org/doi/10.1145/3771545)
+[When Ambiguity Meets Atypicality: Dual-Perspective Test Input Prioritization for DNNs](https://github.com/Ryan-LHR/DuFP)
 
 
 **Haoran Li**, Shihai Wang, Bin Liu, Jialuo Chen, Wenjing Zhu, Yu Liu, Shiteng Fei, Shudi Guo;
@@ -60,12 +63,12 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 
 <span>
 <a href="XX"><strong>Paper</strong></a> |
-<a href="XX"><strong>Code</strong></a>
+<a href="https://github.com/Ryan-LHR/DuFP"><strong>Code</strong></a>
 <!-- <strong><span class="show_paper_citations" data="DhtAFkwAAAAJ:ALROH1vI_8AC"></span></strong> -->
 </span>
 
 
--  We propose **DuFP**. -->
+-  We propose **DuFP** (Dual perspective Feature space Prioritization), a KNN density-based test input prioritization approach for DNNs that jointly incorporates inter-class and intra-class perspectives. Built upon class-conditional density estimation, DuFP characterizes prediction correctness through an ambiguity score and an atypicality score, then integrates them into a hybrid uncertainty score to guide prioritization. Extensive evaluations on image and text datasets under clean, corrupted, and adversarial scenarios show that DuFP effectively and efficiently prioritizes failure-inducing inputs and outperforms state-of-the-art approaches.
 
 
 </div>
@@ -95,4 +98,4 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 - <!--*2021.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. -->
 
 # 💻 Internships
-- *20xx.05 - 20xx.07, [Huawei](https://github.com/), China.
+- *2026.07 - now*, [Huawei](https://www.huawei.com/en/) - 2012 Laboratories, China.
