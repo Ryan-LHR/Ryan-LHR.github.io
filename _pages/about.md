@@ -54,15 +54,15 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ASE-2026</div><img src='images/dufp_workflow.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
-[When Ambiguity Meets Atypicality: Dual-Perspective Test Input Prioritization for DNNs](https://github.com/Ryan-LHR/DuFP)
+[When Ambiguity Meets Atypicality: Dual-Perspective Test Input Prioritization for DNNs](https://arxiv.org/abs/2609.34703)
 
 
-**Haoran Li**, Shihai Wang, Bin Liu, Jialuo Chen, Wenjing Zhu, Yu Liu, Shiteng Fei, Shudi Guo;
+**Haoran Li**, Shihai Wang, Bin Liu, Jialuo Chen, Wenjing Zhu, Yu Liu, Tengfei Shi, Shudi Guo;
 
 **ASE-2026** (<span style="color:#d62728;"><strong>CCF-A</strong></span>)
 
 <span>
-<a href="XX"><strong>Paper</strong></a> |
+<a href="https://arxiv.org/abs/2609.34703"><strong>Paper</strong></a> |
 <a href="https://github.com/Ryan-LHR/DuFP"><strong>Code</strong></a>
 <!-- <strong><span class="show_paper_citations" data="DhtAFkwAAAAJ:ALROH1vI_8AC"></span></strong> -->
 </span>
@@ -99,4 +99,4 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 <!-- - *2021.06* ... -->
 
 # 💻 Internships
-- *2026.07 - now*, [Huawei](https://www.huawei.com/en/) - 2012 Laboratories, China.
+- *2026.07–2026.08*, [Huawei](https://www.huawei.com/en/) - AI Application Algorithm Engineer, 2012 Laboratories, China.
