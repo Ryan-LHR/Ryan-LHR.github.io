@@ -24,7 +24,7 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 
 # 🔥 News
 - *2026.07*: &nbsp;🎉 Our paper on *When Ambiguity Meets Atypicality: Dual-Perspective Test Input Prioritization for DNNs (DuFP)* has been **directly accepted** by **ASE 2026** (115/1,236 reviewed submissions, top 9.3%)!
-- *2025.09*: &nbsp;🎉 Our paper on *Minimizing Side-Effects when Repairing Specific Misclassifications for Deep Neural Networks (SMiR)* has been accepted by **TOSEM**! This is the first TOSEM paper in our group!
+- *2025.09*: &nbsp;🎉 Our paper on *SMiR: Minimizing Side-Effects in Repairing Specific Misclassifications for Deep Neural Networks* has been accepted by **TOSEM**! This is the first TOSEM paper in our group!
 
 # 📝 Publications 
 
@@ -35,7 +35,7 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 [SMiR: Minimizing Side-Effects in Repairing Specific Misclassifications for Deep Neural Networks](https://dl.acm.org/doi/10.1145/3771545)
 
 
-**Haoran Li**, Shihai Wang, Bin Liu, Shiteng Fei, Wentao Wu, Yu Liu
+**Haoran Li**, Shihai Wang, Bin Liu, Tengfei Shi, Wentao Wu, Yu Liu
 
 **TOSEM** (<span style="color:#d62728;"><strong>CCF-A</strong></span>, JCR-Q1)
 
@@ -54,7 +54,7 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ASE-2026</div><img src='images/dufp_workflow.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
-[When Ambiguity Meets Atypicality: Dual-Perspective Test Input Prioritization for DNNs](https://arxiv.org/abs/2609.34703)
+[When Ambiguity Meets Atypicality: Dual-Perspective Test Input Prioritization for DNNs](https://doi.org/10.1145/3832783.3834351)
 
 
 **Haoran Li**, Shihai Wang, Bin Liu, Jialuo Chen, Wenjing Zhu, Yu Liu, Tengfei Shi, Shudi Guo;
@@ -62,7 +62,7 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 **ASE-2026** (<span style="color:#d62728;"><strong>CCF-A</strong></span>)
 
 <span>
-<a href="https://arxiv.org/abs/2609.34703"><strong>Paper</strong></a> |
+<a href="https://doi.org/10.1145/3832783.3834351"><strong>Paper</strong></a> |
 <a href="https://github.com/Ryan-LHR/DuFP"><strong>Code</strong></a>
 <!-- <strong><span class="show_paper_citations" data="DhtAFkwAAAAJ:ALROH1vI_8AC"></span></strong> -->
 </span>
@@ -77,13 +77,17 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 
 
 ## All Publications
+- [CRICO: A Certified Robustness Framework via Input-Dependent Covariance Optimization](https://openreview.net/forum?id=96YE0mCm3P). Shudi Guo, Bin Liu, Shihai Wang, Tengfei Shi, Yu Liu, **Haoran Li**. The 2026 Conference on Empirical Methods in Natural Language Processing (**EMNLP**, CCF-B), 2026. Accepted.
+
+- [AARN3: A software defect prediction model using atomic association rule networks based on three distinct minimum support thresholds](https://doi.org/10.1109/OJCS.2026.3691543). Wentao Wu, Xinan Liu, Hong Du, Yiding Liu, Xingxin Li, **Haoran Li**, Suxin Mo, Huaibo Shen, Runzi Guo. IEEE Open Journal of the Computer Society (**IEEE OJCS**, ESCI), 2026.
+
 - [A slice-level software vulnerability detection method based on hyperbolic gated graph neural network](https://journal.hep.com.cn/fcs/EN/10.1007/s11704-026-50989-1). Yu Liu, Bin Liu, Shihai Wang, Tengfei Shi, **Haoran Li**, Shudi Guo. Frontiers of Computer Science (**FCS**, CCF-B, JCR-Q1), 2026.
 
 - [An intelligent design system for tailored metamaterial properties](https://www.sciencedirect.com/science/article/abs/pii/S0020740324006362). Jipeng Cui, Yaoyu Wang, Liangchi Zhang, **Haoran Li**. International Journal of Mechanical Sciences (**IJMS**, JCR-Q1), 2024
 
-- [TSDTest: A Efficient Coverage Guided Two-Stage Testing for Deep Learning Systems](https://ieeexplore.ieee.org/document/10077070). **Haoran Li**, Shihai Wang, Tengfei Shi, Xinyue Fang, Jian Chen. 2022 IEEE 22nd International Conference on Software Quality, Reliability, and Security Companion (QRS-C 2022), 2022.
+- [TSDTest: An Efficient Coverage Guided Two-Stage Testing for Deep Learning Systems](https://ieeexplore.ieee.org/document/10077070). **Haoran Li**, Shihai Wang, Tengfei Shi, Xinyue Fang, Jian Chen. 2022 IEEE 22nd International Conference on Software Quality, Reliability, and Security Companion (QRS-C 2022), 2022.
 
-- [Generating Adversarial Samples Based on the Attack Robust Training Model](https://ieeexplore.ieee.org/abstract/document/10727083). Tengfei Shi, Shihai Wang, **Haoran Li**, Shudi Guo, Yu Liu. 2024 IEEE 24nd International Conference on Software Quality, Reliability, and Security Companion (QRS-C 2024), 2024.
+- [Generating Adversarial Samples Based on the Attack Robust Training Model](https://ieeexplore.ieee.org/abstract/document/10727083). Tengfei Shi, Shihai Wang, **Haoran Li**, Shudi Guo, Yu Liu. 2024 IEEE 24th International Conference on Software Quality, Reliability, and Security Companion (QRS-C 2024), 2024.
 
 # 🎖 Honors and Awards
 - *2020.12* National Scholarship (Top 1%)
@@ -94,9 +98,9 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 - *2021.09 – 2022.08*, Master, Beihang University, School of Reliability and Systems Engineering (BUAA: China, Beijing)
 - *2017.09 – 2021.07*, Undergraduate (**1/58**), Nanjing Tech University (NJTech: China, Nanjing)
 
-# 💬 Invited Talks
-- <!--*2021.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. -->
-<!-- - *2021.06* ... -->
+# 💬 Talks & Conference Presentations
+- *2026.10*, Presented "When Ambiguity Meets Atypicality: Dual-Perspective Test Input Prioritization for DNNs" (DuFP) at ASE 2026 in Munich, Germany, and participated in the poster presentation.
+- *2022.12*, Delivered an online presentation of "TSDTest: An Efficient Coverage Guided Two-Stage Testing for Deep Learning Systems" at QRS 2022.
 
 # 💻 Internships
 - *2026.07–2026.08*, [Huawei](https://www.huawei.com/en/) - AI Application Algorithm Engineer, 2012 Laboratories, China.
