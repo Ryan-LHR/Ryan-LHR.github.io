@@ -87,6 +87,46 @@
 
 }
 
+.talks-list {
+    > li {
+        margin-bottom: 1.5em;
+
+        &::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    }
+
+    .talk-heading {
+        margin-bottom: .5em;
+    }
+
+    .talk-poster {
+        float: right;
+        display: block;
+        box-sizing: border-box;
+        width: 136px;
+        margin: 0 0 .5em 1.5em;
+        padding: 3px;
+        border: 1px solid $border-color;
+
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin: 0;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .talk-poster {
+            width: 96px;
+            margin-left: 1em;
+        }
+    }
+}
+
 $scroll_offset : 2em;
 h1:before, .anchor:before { 
     content: ''; 

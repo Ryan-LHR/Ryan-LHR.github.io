@@ -23,7 +23,7 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 
 
 # 🔥 News
-- *2026.07*: &nbsp;🎉 Our paper on *When Ambiguity Meets Atypicality: Dual-Perspective Test Input Prioritization for DNNs (DuFP)* has been **directly accepted** by **ASE 2026** (115/1,236 reviewed submissions, top 9.3%)!
+- *2026.06*: &nbsp;🎉 Our paper on *When Ambiguity Meets Atypicality: Dual-Perspective Test Input Prioritization for DNNs (DuFP)* has been **directly accepted** by **ASE 2026** (115/1,236 reviewed submissions, top 9.3%)!
 - *2025.09*: &nbsp;🎉 Our paper on *SMiR: Minimizing Side-Effects in Repairing Specific Misclassifications for Deep Neural Networks* has been accepted by **TOSEM**! This is the first TOSEM paper in our group!
 
 # 📝 Publications 
@@ -98,9 +98,22 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 - *2021.09 – 2022.08*, Master, Beihang University, School of Reliability and Systems Engineering (BUAA: China, Beijing)
 - *2017.09 – 2021.07*, Undergraduate (**1/58**), Nanjing Tech University (NJTech: China, Nanjing)
 
-# 💬 Talks & Conference Presentations
-- *2026.10*, Presented "When Ambiguity Meets Atypicality: Dual-Perspective Test Input Prioritization for DNNs" (DuFP) at ASE 2026 in Munich, Germany, and participated in the poster presentation.
-- *2022.12*, Delivered an online presentation of "TSDTest: An Efficient Coverage Guided Two-Stage Testing for Deep Learning Systems" at QRS 2022.
+# 💬 Talks & Presentations
+{: #talks-presentations}
+
+<ul class="talks-list">
+  <li>
+    <a class="talk-poster" href="images/dufp-ase2026-poster.png" aria-label="View the DuFP poster presented at ASE 2026">
+      <img src="images/dufp-ase2026-poster-preview.webp" alt="DuFP poster presented at ASE 2026" width="495" height="700" loading="lazy" decoding="async">
+    </a>
+    <p class="talk-heading"><em>2026.10</em> · <strong>ASE 2026</strong></p>
+    <p>Presented "When Ambiguity Meets Atypicality: Dual-Perspective Test Input Prioritization for DNNs" at ASE 2026 in Munich, Germany, and participated in the poster presentation.</p>
+  </li>
+  <li>
+    <p class="talk-heading"><em>2022.12</em> · <strong>QRS 2022</strong></p>
+    <p>Presented "TSDTest: An Efficient Coverage Guided Two-Stage Testing for Deep Learning Systems" at QRS 2022 online.</p>
+  </li>
+</ul>
 
 # 💻 Internships
 - *2026.07–2026.08*, [Huawei](https://www.huawei.com/en/) - AI Application Algorithm Engineer, 2012 Laboratories, China.
