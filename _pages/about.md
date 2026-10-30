@@ -8,18 +8,9 @@ redirect_from:
   - /about.html
 ---
 
-{% if site.google_scholar_stats_use_cdn %}
-{% assign gsDataBaseUrl = "https://cdn.jsdelivr.net/gh/" | append: site.repository | append: "@" %}
-{% else %}
-{% assign gsDataBaseUrl = "https://raw.githubusercontent.com/" | append: site.repository | append: "/" %}
-{% endif %}
-{% assign url = gsDataBaseUrl | append: "google-scholar-stats/gs_data_shieldsio.json" %}
-
 <span class='anchor' id='about-me'></span>
 
 I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by Prof. Shihai Wang. My research lies at the intersection of software engineering and trustworthy artificial intelligence, with a particular focus on software engineering for AI (SE4AI). Specifically, I am interested in the reliability, testing, and repair of deep neural networks. My goal is to improve the robustness and deployment reliability of AI systems through principled testing prioritization and model repair techniques.
-
-<!--I have published more than 100 papers at the top international AI conferences with total <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'>google scholar citations <strong><span id='total_cit'>260000+</span></strong></a> (You can also use google scholar badge <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>).-->
 
 
 # 🔥 News
@@ -39,10 +30,15 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 
 **TOSEM** (<span style="color:#d62728;"><strong>CCF-A</strong></span>, JCR-Q1)
 
-<span>
-<a href="https://dl.acm.org/doi/pdf/10.1145/3771545"><strong>Paper</strong></a> |
+<span class="paper-resources">
+<span class="paper-link">
+<a href="https://dl.acm.org/doi/pdf/10.1145/3771545"><strong>Paper</strong></a>
+<a class="show_paper_citations" data-paper-title="SMiR: Minimizing Side-Effects in Repairing Specific Misclassifications for Deep Neural Networks" hidden><img class="citation-badge" alt="" height="20" decoding="async"></a>
+</span> |
+<span class="paper-code">
 <a href="https://github.com/AnonymousSE4AI/SMiR"><strong>Code</strong></a>
-<!-- <strong><span class="show_paper_citations" data="DhtAFkwAAAAJ:ALROH1vI_8AC"></span></strong> -->
+<a class="repo-stars" href="https://github.com/AnonymousSE4AI/SMiR/stargazers" aria-label="SMiR GitHub stars"><img src="https://img.shields.io/github/stars/AnonymousSE4AI/SMiR?style=social" alt="SMiR GitHub stars" height="20" loading="lazy" decoding="async"></a>
+</span>
 </span>
 
 
@@ -61,10 +57,15 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 
 **ASE-2026** (<span style="color:#d62728;"><strong>CCF-A</strong></span>)
 
-<span>
-<a href="https://doi.org/10.1145/3832783.3834351"><strong>Paper</strong></a> |
+<span class="paper-resources">
+<span class="paper-link">
+<a href="https://doi.org/10.1145/3832783.3834351"><strong>Paper</strong></a>
+<a class="show_paper_citations" data-paper-title="When Ambiguity Meets Atypicality: Dual-Perspective Test Input Prioritization for DNNs" hidden><img class="citation-badge" alt="" height="20" decoding="async"></a>
+</span> |
+<span class="paper-code">
 <a href="https://github.com/Ryan-LHR/DuFP"><strong>Code</strong></a>
-<!-- <strong><span class="show_paper_citations" data="DhtAFkwAAAAJ:ALROH1vI_8AC"></span></strong> -->
+<a class="repo-stars" href="https://github.com/Ryan-LHR/DuFP/stargazers" aria-label="DuFP GitHub stars"><img src="https://img.shields.io/github/stars/Ryan-LHR/DuFP?style=social" alt="DuFP GitHub stars" height="20" loading="lazy" decoding="async"></a>
+</span>
 </span>
 
 
@@ -118,6 +119,22 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
       <p class="talk-heading"><strong>QRS 2022</strong></p>
       <p class="talk-description">Presented "TSDTest: An Efficient Coverage Guided Two-Stage Testing for Deep Learning Systems" at QRS 2022 online.</p>
     </div>
+  </li>
+</ul>
+
+# <i class="fas fa-code" aria-hidden="true"></i> Open-Source Projects
+{: #open-source-projects}
+
+<ul class="open-source-list">
+  <li>
+    <div class="project-heading">
+      <div class="project-name">
+        <a href="https://github.com/Ryan-LHR/Awesome-DNN-Testing-And-Repair"><strong>Awesome DNN Testing and Repair</strong></a>
+        <a class="repo-stars" href="https://github.com/Ryan-LHR/Awesome-DNN-Testing-And-Repair/stargazers" aria-label="Awesome DNN Testing and Repair GitHub stars"><img src="https://img.shields.io/github/stars/Ryan-LHR/Awesome-DNN-Testing-And-Repair?style=social" alt="Awesome DNN Testing and Repair GitHub stars" height="20" loading="lazy" decoding="async"></a>
+      </div>
+      <span class="project-kind">Research Resource</span>
+    </div>
+    <p>A curated reading list for deep neural network testing and repair, covering coverage metrics, test generation, test selection and prioritization, and model repair. Includes surveys and empirical studies, with publication details and links to available papers and code.</p>
   </li>
 </ul>
 

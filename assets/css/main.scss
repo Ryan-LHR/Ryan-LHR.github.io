@@ -87,6 +87,75 @@
 
 }
 
+.paper-resources {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 8px;
+}
+
+.paper-code,
+.paper-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.page__content .repo-stars,
+.page__content .show_paper_citations:not([hidden]) {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    text-decoration: none;
+
+    img {
+        display: block;
+        height: 20px;
+        width: auto;
+        margin: 0;
+        box-shadow: none;
+    }
+
+    &:hover img {
+        box-shadow: none;
+    }
+}
+
+.open-source-list {
+    .project-heading,
+    .project-name {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px 12px;
+    }
+
+    .project-heading {
+        margin-bottom: .5em;
+    }
+
+    .project-name {
+        min-width: 0;
+    }
+
+    .project-kind {
+        margin-left: auto;
+        color: $gray;
+        font-size: .8em;
+        white-space: nowrap;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    @media (max-width: 520px) {
+        .project-kind {
+            margin-left: 0;
+        }
+    }
+}
+
 .talks-list {
     list-style: none;
     padding-left: 0;

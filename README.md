@@ -35,8 +35,8 @@ Some examples:
 1. Fork this REPO and rename to `USERNAME.github.io`, where `USERNAME` is your github USERNAME.
 1. Configure the google scholar citation crawler:
     1. Find your google scholar ID in the url of your google scholar page (e.g., https://scholar.google.com/citations?user=SCHOLAR_ID), where `SCHOLAR_ID` is your google scholar ID.
-    1. Set GOOGLE_SCHOLAR_ID variable to your google scholar ID in `Settings -> Secrets -> Actions -> New repository secret` of the REPO website with `name=GOOGLE_SCHOLAR_ID` and `value=SCHOLAR_ID`.
-    1. Click the `Action` of the REPO website and enable the workflows by clicking *"I understand my workflows, go ahead and enable them"*. This github action will generate google scholar citation stats data `gs_data.json` in `google-scholar-stats` branch of your REPO. When you update your main branch, this action will be triggered. This action will also be trigger 08:00 UTC everyday.
+    1. Set `author.googlescholar` in `_config.yml` to your public profile URL, and `repository` to the actual GitHub repository. The crawler and page use this same profile; no Google password or `GOOGLE_SCHOLAR_ID` secret is needed.
+    1. After reviewing and publishing the workflow, enable **Get Citation Data** in GitHub Actions and use **Run workflow** for the first run. It then runs daily at 08:00 UTC, writing `gs_data.json` to `google-scholar-stats` without force-pushing. Failed fetches preserve the previous cache. This requires the workflow's `contents: write` permission.
 1. Generate favicon using [favicon-generator](https://redketchup.io/favicon-generator) and download all generated files to `REPO/images`.
 1. Modify the configuration of your homepage `_config.yml`:
     1. `title`: the title of your homepage
@@ -48,12 +48,11 @@ Some examples:
     1. More configuration details are described in the comments.
 1. Add your homepage content in `_pages/about.md`.
     1. You can use html+markdown syntax just same as jekyll.
-    1. You can use a `<span>` tag with class `show_paper_citations` and attribute `data` to display the citations of your paper. Set the data to the google scholar paper ID. For
+    1. Add a hidden citation badge with the full paper title:
         ```html
-        <span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span>
+        <a class="show_paper_citations" data-paper-title="Full paper title" hidden><img class="citation-badge" alt="" height="20" decoding="async"></a>
         ``` 
-        > Q: How to get the google scholar paper ID?   
-        > A: Enter your google scholar homepage and click the paper name. Then you can see the paper ID from `citation_for_view=XXXX`, where `XXXX` is the required paper ID.
+        The page matches a unique full title in the configured author's fetched publications (ignoring case and punctuation). It uses the returned Scholar ID for the link, not a guessed ID. Missing, ambiguous or invalid records stay hidden; a verified zero is displayed as `0`. Citation badges use the same Shields `social` style as GitHub stars, with their number supplied by the fetched cache rather than hardcoded. Hover over the badge to see the cache update date. Scholar may block automated access; do not replace missing data with made-up counts.
 1. Your page will be published at `https://USERNAME.github.io`.
 
 ## Debug Locally

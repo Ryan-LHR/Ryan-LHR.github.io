@@ -1,2 +1,4 @@
-jsonpickle==1.4.2
-scholarly==1.5.1
+scholarly==1.7.11
+# scholarly imports the bibtexparser 1.x API.
+bibtexparser==1.4.3
+PyYAML==6.0.2

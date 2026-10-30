@@ -1,29 +1,60 @@
 name: Get Citation Data
 
-on: 
- page_build: 
- schedule:
-  - cron:  '0 8 * * *'
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 8 * * *'
+
+concurrency:
+  group: google-scholar-stats
+  cancel-in-progress: false
+
+permissions:
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
     steps:
-    - uses: actions/checkout@v2
-    - name: Install Reqs
-      run: |
-        sudo apt-get install python3-setuptools
-    - name: Run
-      run: |
-        cd ./google_scholar_crawler
-        pip3 install -r requirements.txt
-        python3 main.py
-        cd ./results
-        git init
-        git config --local user.name "${GITHUB_ACTOR}"
-        export remote_repo="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
-        git add *.json
-        git commit -m "Updated Citation Data"
-        git push "${remote_repo}" HEAD:google-scholar-stats --force
-      env: 
-        GOOGLE_SCHOLAR_ID: ${{ secrets.GOOGLE_SCHOLAR_ID }}
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: google_scholar_crawler/requirements.txt
+      - name: Install requirements
+        run: python -m pip install -r google_scholar_crawler/requirements.txt
+      - name: Test citation data validation
+        run: |
+          python -m unittest discover -s google_scholar_crawler -p 'test_*.py'
+          node --test google_scholar_crawler/test_citations.cjs
+      - name: Fetch public Scholar profile
+        timeout-minutes: 3
+        run: python google_scholar_crawler/main.py --output "$RUNNER_TEMP/scholar-results"
+      - name: Publish citation cache
+        shell: bash
+        run: |
+          set -euo pipefail
+          cache="$RUNNER_TEMP/scholar-cache"
+          if git ls-remote --exit-code --heads origin refs/heads/google-scholar-stats; then
+            git fetch --depth=1 origin refs/heads/google-scholar-stats
+            git worktree add --detach "$cache" FETCH_HEAD
+          else
+            status=$?
+            if [ "$status" -ne 2 ]; then exit "$status"; fi
+            git worktree add --detach "$cache" HEAD
+            git -C "$cache" checkout --orphan google-scholar-stats
+            # Only clear the new, temporary orphan worktree, never the source tree.
+            git -C "$cache" rm -rf .
+          fi
+          cp "$RUNNER_TEMP/scholar-results/gs_data.json" "$cache/"
+          cp "$RUNNER_TEMP/scholar-results/gs_data_shieldsio.json" "$cache/"
+          git -C "$cache" config user.name 'github-actions[bot]'
+          git -C "$cache" config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -C "$cache" add gs_data.json gs_data_shieldsio.json
+          if git -C "$cache" diff --cached --quiet; then exit 0; fi
+          git -C "$cache" commit -m 'Update Google Scholar citation data'
+          git -C "$cache" push origin HEAD:refs/heads/google-scholar-stats
