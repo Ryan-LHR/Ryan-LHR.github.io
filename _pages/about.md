@@ -103,15 +103,21 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 
 <ul class="talks-list">
   <li>
+    <time class="talk-date" datetime="2026-10">2026.10</time>
+    <div class="talk-body">
+      <p class="talk-heading"><strong>ASE 2026</strong></p>
+      <p class="talk-description">Presented "When Ambiguity Meets Atypicality: Dual-Perspective Test Input Prioritization for DNNs" at ASE 2026 in Munich, Germany, and participated in the poster presentation.</p>
+    </div>
     <a class="talk-poster" href="images/dufp-ase2026-poster.png" aria-label="View the DuFP poster presented at ASE 2026">
       <img src="images/dufp-ase2026-poster-preview.webp" alt="DuFP poster presented at ASE 2026" width="80" height="113" loading="lazy" decoding="async">
     </a>
-    <p class="talk-heading"><em>2026.10</em> · <strong>ASE 2026</strong></p>
-    <p>Presented "When Ambiguity Meets Atypicality: Dual-Perspective Test Input Prioritization for DNNs" at ASE 2026 in Munich, Germany, and participated in the poster presentation.</p>
   </li>
-  <li>
-    <p class="talk-heading"><em>2022.12</em> · <strong>QRS 2022</strong></p>
-    <p>Presented "TSDTest: An Efficient Coverage Guided Two-Stage Testing for Deep Learning Systems" at QRS 2022 online.</p>
+  <li class="talk-no-poster">
+    <time class="talk-date" datetime="2022-12">2022.12</time>
+    <div class="talk-body">
+      <p class="talk-heading"><strong>QRS 2022</strong></p>
+      <p class="talk-description">Presented "TSDTest: An Efficient Coverage Guided Two-Stage Testing for Deep Learning Systems" at QRS 2022 online.</p>
+    </div>
   </li>
 </ul>
 
