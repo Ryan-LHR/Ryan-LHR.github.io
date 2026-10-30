@@ -89,6 +89,7 @@
 
 .talks-list {
     > li {
+        max-width: 540px;
         margin-bottom: 1.5em;
 
         &::after {
@@ -106,8 +107,8 @@
         float: right;
         display: block;
         box-sizing: border-box;
-        width: 136px;
-        margin: 0 0 .5em 1.5em;
+        width: 88px;
+        margin: 0 20px .5em 1em;
         padding: 3px;
         border: 1px solid $border-color;
 
@@ -121,7 +122,8 @@
 
     @media (max-width: 600px) {
         .talk-poster {
-            width: 96px;
+            width: 72px;
+            margin-right: 8px;
             margin-left: 1em;
         }
     }

@@ -104,7 +104,7 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 <ul class="talks-list">
   <li>
     <a class="talk-poster" href="images/dufp-ase2026-poster.png" aria-label="View the DuFP poster presented at ASE 2026">
-      <img src="images/dufp-ase2026-poster-preview.webp" alt="DuFP poster presented at ASE 2026" width="128" height="181" loading="lazy" decoding="async">
+      <img src="images/dufp-ase2026-poster-preview.webp" alt="DuFP poster presented at ASE 2026" width="80" height="113" loading="lazy" decoding="async">
     </a>
     <p class="talk-heading"><em>2026.10</em> · <strong>ASE 2026</strong></p>
     <p>Presented "When Ambiguity Meets Atypicality: Dual-Perspective Test Input Prioritization for DNNs" at ASE 2026 in Munich, Germany, and participated in the poster presentation.</p>
