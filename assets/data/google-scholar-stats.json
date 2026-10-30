@@ -1,0 +1,57 @@
+{
+  "scholar_id": "wr2qnW0AAAAJ",
+  "name": "Haoran Li",
+  "updated": "2026-10-30T10:38:37+00:00",
+  "citedby": 22,
+  "publications": {
+    "wr2qnW0AAAAJ:9yKSN-GCB0IC": {
+      "author_pub_id": "wr2qnW0AAAAJ:9yKSN-GCB0IC",
+      "bib": {
+        "title": "An intelligent design system for tailored metamaterial properties"
+      },
+      "num_citations": 18
+    },
+    "wr2qnW0AAAAJ:d1gkVwhDpl0C": {
+      "author_pub_id": "wr2qnW0AAAAJ:d1gkVwhDpl0C",
+      "bib": {
+        "title": "TSDTest: A Efficient Coverage Guided Two-Stage Testing for Deep Learning Systems"
+      },
+      "num_citations": 2
+    },
+    "wr2qnW0AAAAJ:qjMakFHDy7sC": {
+      "author_pub_id": "wr2qnW0AAAAJ:qjMakFHDy7sC",
+      "bib": {
+        "title": "SMiR: Minimizing Side Effects in Repairing Specific Misclassifications for Deep Neural Networks"
+      },
+      "num_citations": 1
+    },
+    "wr2qnW0AAAAJ:UeHWp8X0CEIC": {
+      "author_pub_id": "wr2qnW0AAAAJ:UeHWp8X0CEIC",
+      "bib": {
+        "title": "Generating adversarial samples based on the attack robust training model"
+      },
+      "num_citations": 1
+    },
+    "wr2qnW0AAAAJ:Tyk-4Ss8FVUC": {
+      "author_pub_id": "wr2qnW0AAAAJ:Tyk-4Ss8FVUC",
+      "bib": {
+        "title": "When Ambiguity Meets Atypicality: Dual-Perspective Test Input Prioritization for DNNs"
+      },
+      "num_citations": 0
+    },
+    "wr2qnW0AAAAJ:Y0pCki6q_DkC": {
+      "author_pub_id": "wr2qnW0AAAAJ:Y0pCki6q_DkC",
+      "bib": {
+        "title": "AARN3: A software defect prediction model using atomic association rule networks based on three distinct minimum support thresholds"
+      },
+      "num_citations": 0
+    },
+    "wr2qnW0AAAAJ:zYLM7Y9cAGgC": {
+      "author_pub_id": "wr2qnW0AAAAJ:zYLM7Y9cAGgC",
+      "bib": {
+        "title": "A slice-level software vulnerability detection method based on hyperbolic gated graph neural network"
+      },
+      "num_citations": 0
+    }
+  }
+}

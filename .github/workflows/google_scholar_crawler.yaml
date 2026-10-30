@@ -20,6 +20,15 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v7
+      - name: Check SerpApi secret
+        shell: bash
+        env:
+          SERPAPI_API_KEY: ${{ secrets.SERPAPI_API_KEY }}
+        run: |
+          if [ -z "${SERPAPI_API_KEY//[[:space:]]/}" ]; then
+            echo "::error::Add the SERPAPI_API_KEY repository secret under Settings > Secrets and variables > Actions."
+            exit 1
+          fi
       - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
@@ -31,8 +40,10 @@ jobs:
         run: |
           python -m unittest discover -s google_scholar_crawler -p 'test_*.py'
           node --test google_scholar_crawler/test_citations.cjs
-      - name: Fetch public Scholar profile
-        timeout-minutes: 3
+      - name: Fetch Google Scholar citations via SerpApi
+        timeout-minutes: 5
+        env:
+          SERPAPI_API_KEY: ${{ secrets.SERPAPI_API_KEY }}
         run: python google_scholar_crawler/main.py --output "$RUNNER_TEMP/scholar-results"
       - name: Publish citation cache
         shell: bash

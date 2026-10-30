@@ -5,4 +5,5 @@
 {% endif %}
 <script src="{{ '/assets/js/scholar-citations.js' | relative_url }}" defer
         data-stats-url="{{ gsDataBaseUrl }}google-scholar-stats/gs_data.json"
+        data-fallback-url="{{ '/assets/data/google-scholar-stats.json' | relative_url }}"
         data-scholar-url="{{ site.author.googlescholar | escape }}"></script>

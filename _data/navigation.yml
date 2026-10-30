@@ -18,8 +18,8 @@ main:
   - title: "Talks & Presentations"
     url: "/#talks-presentations"
 
-  - title: "Open Source"
-    url: "/#open-source-projects"
-
   - title: "Internships"
     url: "/#-internships"
+
+  - title: "Open Source"
+    url: "/#open-source-projects"

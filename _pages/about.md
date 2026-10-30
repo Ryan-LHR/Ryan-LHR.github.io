@@ -122,6 +122,9 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
   </li>
 </ul>
 
+# 💻 Internships
+- *2026.07–2026.08*, [Huawei](https://www.huawei.com/en/) - AI Application Algorithm Engineer, 2012 Laboratories, China.
+
 # <i class="fas fa-code" aria-hidden="true"></i> Open-Source Projects
 {: #open-source-projects}
 
@@ -138,5 +141,16 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
   </li>
 </ul>
 
-# 💻 Internships
-- *2026.07–2026.08*, [Huawei](https://www.huawei.com/en/) - AI Application Algorithm Engineer, 2012 Laboratories, China.
+<div class="github-activity" data-username="Ryan-LHR" hidden>
+  <div class="github-activity-summary">
+    <strong>GitHub activity</strong>
+    <span class="github-activity-total"></span>
+    <span>contributions in the last year</span>
+    <span class="github-activity-range"></span>
+    <a href="https://github.com/Ryan-LHR">@Ryan-LHR <i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
+  </div>
+  <div class="github-activity-chart">
+    <div class="github-activity-calendar"></div>
+    <div class="github-activity-legend" aria-hidden="true"><span>Less</span><i data-level="0"></i><i data-level="1"></i><i data-level="2"></i><i data-level="3"></i><i data-level="4"></i><span>More</span></div>
+  </div>
+</div>

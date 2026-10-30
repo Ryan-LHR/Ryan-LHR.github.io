@@ -8,6 +8,33 @@ import yaml
 
 
 class WorkflowTests(unittest.TestCase):
+    def test_serpapi_secret_is_scoped_and_schedule_is_preserved(self):
+        workflow = Path(__file__).resolve().parents[1] / ".github/workflows/google_scholar_crawler.yaml"
+        definition = yaml.safe_load(workflow.read_text())
+        triggers = definition.get("on", definition.get(True))
+        self.assertEqual(triggers["schedule"][0]["cron"], "0 8 * * *")
+        self.assertIn("workflow_dispatch", triggers)
+        steps = definition["jobs"]["build"]["steps"]
+        fetch = next(step for step in steps if step.get("name") == "Fetch Google Scholar citations via SerpApi")
+        self.assertEqual(fetch["env"]["SERPAPI_API_KEY"], "${{ secrets.SERPAPI_API_KEY }}")
+        check = next(step for step in steps if step.get("name") == "Check SerpApi secret")
+        self.assertIn("SERPAPI_API_KEY", check["run"])
+        for step in steps:
+            if step not in (check, fetch):
+                self.assertNotIn("SERPAPI_API_KEY", step.get("env", {}))
+
+    def test_secret_check_rejects_blank_values_without_logging_the_key(self):
+        workflow = Path(__file__).resolve().parents[1] / ".github/workflows/google_scholar_crawler.yaml"
+        definition = yaml.safe_load(workflow.read_text())
+        check = next(step["run"] for step in definition["jobs"]["build"]["steps"]
+                     if step.get("name") == "Check SerpApi secret")
+        for key in ["", " \t\n", "test-only-key-not-real"]:
+            result = subprocess.run(["bash", "-c", check], capture_output=True, text=True,
+                                    env=dict(os.environ, SERPAPI_API_KEY=key))
+            self.assertEqual(result.returncode, 0 if key.strip() else 1)
+            if key.strip():
+                self.assertNotIn(key, result.stdout + result.stderr)
+
     def test_cache_creation_incremental_update_and_no_change(self):
         workflow = Path(__file__).resolve().parents[1] / ".github/workflows/google_scholar_crawler.yaml"
         definition = yaml.safe_load(workflow.read_text())

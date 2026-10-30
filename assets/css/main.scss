@@ -122,6 +122,8 @@
 }
 
 .open-source-list {
+    padding-inline-start: 40px;
+
     .project-heading,
     .project-name {
         display: flex;
@@ -152,6 +154,103 @@
     @media (max-width: 520px) {
         .project-kind {
             margin-left: 0;
+        }
+    }
+}
+
+.github-activity:not([hidden]) {
+    display: grid;
+    grid-template-columns: 145px minmax(0, 1fr);
+    gap: 22px;
+    margin-top: 1.5em;
+    /* Match the project text inset, not the section heading or list marker. */
+    margin-inline-start: 40px;
+    margin-inline-end: 10%;
+    min-width: 0;
+    padding-top: 1.2em;
+    border-top: 1px solid $border-color;
+    font-size: 13px;
+
+    .github-activity-summary {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3px;
+
+        > span:not(.github-activity-total) {
+            color: $gray;
+            font-size: 11px;
+        }
+
+        a {
+            margin-top: 7px;
+            font-size: 11px;
+            text-decoration: none;
+        }
+    }
+
+    .github-activity-total {
+        margin-top: 5px;
+        font-size: 32px;
+        font-weight: bold;
+        line-height: 1.1;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .github-activity-chart,
+    .github-activity-calendar {
+        min-width: 0;
+    }
+
+    .github-activity-calendar svg {
+        display: block;
+    }
+
+    .github-activity-calendar text {
+        fill: $gray;
+        font-family: inherit;
+        font-size: 11px;
+    }
+
+    [data-level="0"] { fill: #eff2f5; background: #eff2f5; }
+    [data-level="1"] { fill: #aceebb; background: #aceebb; }
+    [data-level="2"] { fill: #4acb6a; background: #4acb6a; }
+    [data-level="3"] { fill: #24a148; background: #24a148; }
+    [data-level="4"] { fill: #12652e; background: #12652e; }
+
+    .github-activity-legend {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 4px;
+        margin-top: 8px;
+        color: $gray;
+        font-size: 11px;
+
+        i {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+        margin-inline-end: 0;
+
+        .github-activity-summary {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+
+            > :not(.github-activity-total) { grid-column: 1; }
+
+            .github-activity-total {
+                grid-column: 2;
+                grid-row: 1 / 4;
+                align-self: center;
+                margin: 0;
+            }
         }
     }
 }

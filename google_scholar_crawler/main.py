@@ -1,9 +1,12 @@
 import argparse
 import json
+import os
 import re
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import parse_qs, urlparse
+from urllib.error import HTTPError, URLError
+from urllib.parse import parse_qs, urlencode, urlparse
+from urllib.request import Request, urlopen
 
 import yaml
 
@@ -26,7 +29,7 @@ def build_stats(author, scholar_id):
     publications = {}
     for paper in author.get("publications", []):
         paper_id = paper.get("author_pub_id", "")
-        if not re.fullmatch(re.escape(scholar_id) + r":[A-Za-z0-9_-]+", paper_id):
+        if not isinstance(paper_id, str) or not re.fullmatch(re.escape(scholar_id) + r":[A-Za-z0-9_-]+", paper_id):
             raise ValueError("Invalid publication ID")
         if paper_id in publications or not paper.get("bib", {}).get("title"):
             raise ValueError("Duplicate publication ID or missing title")
@@ -42,20 +45,82 @@ def build_stats(author, scholar_id):
     return {
         "scholar_id": scholar_id,
         "name": author["name"],
-        "updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "updated": author.get("updated") or datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "citedby": author["citedby"],
         "publications": publications,
     }
 
 
-def fetch_author(scholar_id):
-    from scholarly import scholarly
+def fetch_serpapi_page(scholar_id, api_key, start):
+    params = urlencode({
+        "engine": "google_scholar_author", "author_id": scholar_id,
+        "hl": "en", "num": 100, "start": start, "api_key": api_key,
+    })
+    request = Request("https://serpapi.com/search.json?" + params,
+                      headers={"Accept": "application/json"})
+    try:
+        with urlopen(request, timeout=45) as response:
+            data = json.load(response)
+    except HTTPError as error:
+        hint = {
+            401: "Check the SERPAPI_API_KEY repository secret.",
+            403: "Check the SerpApi account permissions.",
+            429: "Check the SerpApi quota and rate limit.",
+        }.get(error.code, "Check the SerpApi service status and retry later.")
+        # HTTP errors and response bodies can contain the request URL and secret.
+        raise RuntimeError(f"SerpApi HTTP {error.code}. {hint}") from None
+    except (URLError, TimeoutError, OSError):
+        raise RuntimeError("SerpApi network request failed; the existing cache is unchanged.") from None
+    except (ValueError, UnicodeDecodeError):
+        raise RuntimeError("SerpApi returned invalid JSON; the existing cache is unchanged.") from None
+    if (not isinstance(data, dict) or data.get("error") or
+            data.get("search_metadata", {}).get("status") != "Success"):
+        raise RuntimeError("SerpApi search failed. Check the account dashboard and quota.")
+    return data
 
-    scholarly.set_timeout(15)
-    scholarly.set_retries(1)
-    author = scholarly.search_author_id(scholar_id)
-    scholarly.fill(author, sections=["basics", "indices", "publications"])
-    return author
+
+def fetch_author(scholar_id):
+    api_key = os.environ.get("SERPAPI_API_KEY", "").strip()
+    if not api_key:
+        raise ValueError("Missing SERPAPI_API_KEY. Add it under repository Settings > Secrets and variables > Actions.")
+    author = None
+    start = 0
+    # Bound pagination to avoid spending the API quota on a looping response.
+    for _ in range(10):
+        data = fetch_serpapi_page(scholar_id, api_key, start)
+        parameters = data.get("search_parameters", {})
+        if parameters.get("author_id") != scholar_id or parameters.get("engine") != "google_scholar_author":
+            raise ValueError("SerpApi returned an unexpected author or search engine")
+        processed = data["search_metadata"].get("processed_at", "")
+        try:
+            updated = datetime.strptime(processed, "%Y-%m-%d %H:%M:%S UTC").replace(tzinfo=timezone.utc).isoformat()
+        except (TypeError, ValueError):
+            raise ValueError("SerpApi returned a missing or invalid data timestamp") from None
+        if author is None:
+            table = data.get("cited_by", {}).get("table", [])
+            total = next((row["citations"].get("all") for row in table if "citations" in row), None)
+            author = {
+                "scholar_id": parameters["author_id"],
+                "name": data.get("author", {}).get("name"),
+                "citedby": total,
+                "updated": updated,
+                "publications": [],
+            }
+        # Use the oldest page timestamp rather than relabeling cached data as fresh.
+        author["updated"] = min(author["updated"], updated)
+        articles = data.get("articles")
+        if not isinstance(articles, list) or not articles:
+            raise ValueError("SerpApi returned a missing or empty article list")
+        for article in articles:
+            author["publications"].append({
+                "author_pub_id": article.get("citation_id"),
+                "bib": {"title": article.get("title")},
+                "num_citations": article.get("cited_by", {}).get("value"),
+            })
+        if not data.get("serpapi_pagination", {}).get("next"):
+            return author
+        start += len(articles)
+    raise ValueError("SerpApi exceeded the 10-page limit; keeping the existing cache")
 
 
 def update_stats(config_path, output_dir):

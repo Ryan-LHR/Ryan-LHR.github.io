@@ -36,7 +36,8 @@ Some examples:
 1. Configure the google scholar citation crawler:
     1. Find your google scholar ID in the url of your google scholar page (e.g., https://scholar.google.com/citations?user=SCHOLAR_ID), where `SCHOLAR_ID` is your google scholar ID.
     1. Set `author.googlescholar` in `_config.yml` to your public profile URL, and `repository` to the actual GitHub repository. The crawler and page use this same profile; no Google password or `GOOGLE_SCHOLAR_ID` secret is needed.
-    1. After reviewing and publishing the workflow, enable **Get Citation Data** in GitHub Actions and use **Run workflow** for the first run. It then runs daily at 08:00 UTC, writing `gs_data.json` to `google-scholar-stats` without force-pushing. Failed fetches preserve the previous cache. This requires the workflow's `contents: write` permission.
+    1. Create a [SerpApi](https://serpapi.com/users/sign_up) account and add its API key as the **repository secret** `SERPAPI_API_KEY` under **Settings > Secrets and variables > Actions**. Do not put the key in the configuration, frontend, or source code. The crawler uses SerpApi's Google Scholar Author API instead of scraping Google directly; see the [setup and verification guide](docs/citation-updates.md).
+    1. After reviewing and publishing the workflow, enable **Get Citation Data** in GitHub Actions and use **Run workflow** for the first run on the updated default branch. It then runs daily at 08:00 UTC (16:00 Asia/Shanghai), writing `gs_data.json` to `google-scholar-stats` without force-pushing. Failed fetches preserve the previous cache. This requires the workflow's `contents: write` permission; no separate GitHub token secret is needed.
 1. Generate favicon using [favicon-generator](https://redketchup.io/favicon-generator) and download all generated files to `REPO/images`.
 1. Modify the configuration of your homepage `_config.yml`:
     1. `title`: the title of your homepage
@@ -52,8 +53,14 @@ Some examples:
         ```html
         <a class="show_paper_citations" data-paper-title="Full paper title" hidden><img class="citation-badge" alt="" height="20" decoding="async"></a>
         ``` 
-        The page matches a unique full title in the configured author's fetched publications (ignoring case and punctuation). It uses the returned Scholar ID for the link, not a guessed ID. Missing, ambiguous or invalid records stay hidden; a verified zero is displayed as `0`. Citation badges use the same Shields `social` style as GitHub stars, with their number supplied by the fetched cache rather than hardcoded. Hover over the badge to see the cache update date. Scholar may block automated access; do not replace missing data with made-up counts.
+        The page matches a unique full title in the configured author's fetched publications (ignoring case and punctuation). It uses the returned Scholar ID for the link, not a guessed ID. Missing, ambiguous or invalid records stay hidden; a verified zero is displayed as `0`. Citation badges use the same Shields `social` style as GitHub stars. The page loads both the checked-in snapshot at `assets/data/google-scholar-stats.json` and the automated cache, preferring the newest valid record for each paper regardless of response order. Hover over a badge to see its actual data date. A failed workflow does not refresh the snapshot, but no longer prevents badges from appearing. For a local refresh, supply `SERPAPI_API_KEY` securely in the environment, run `python google_scholar_crawler/main.py --output /tmp/scholar-results`, copy its validated `gs_data.json` to `assets/data/google-scholar-stats.json`, then review and publish the change. Never replace missing data with made-up counts or change a snapshot's date without fetching again.
 1. Your page will be published at `https://USERNAME.github.io`.
+
+## GitHub Activity
+
+The final Open-Source Projects section includes a numeric sidebar and contribution calendar.
+`assets/js/github-activity.js` requests public data from [GitHub Contributions API](https://github.com/grubersjoe/github-contributions-api) using `?y=last` (one-hour upstream cache; no token required).
+The graph and total use the same latest 365 available days, including dates across calendar years; the displayed date range makes the snapshot explicit. Missing, incomplete, or stale data hides this optional block instead of displaying a false zero. No GitHub Actions workflow is needed for this component.
 
 ## Debug Locally
 

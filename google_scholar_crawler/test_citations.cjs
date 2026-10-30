@@ -40,11 +40,15 @@ async function render(data, options = {}) {
     const context = {
         URL, AbortController, setTimeout, clearTimeout,
         document: {
-            currentScript: { dataset: { statsUrl: 'https://example.test/gs_data.json', scholarUrl: 'https://scholar.google.com/citations?user=' + scholarId } },
+            currentScript: { dataset: { statsUrl: 'https://example.test/gs_data.json', fallbackUrl: options.fallback ? '/assets/data/google-scholar-stats.json' : undefined, scholarUrl: 'https://scholar.google.com/citations?user=' + scholarId } },
             querySelectorAll: () => elements,
             getElementById: () => total,
         },
-        fetch: async () => {
+        fetch: async url => {
+            if (url.startsWith('/assets/')) {
+                if (options.fallbackLast) await new Promise(resolve => setImmediate(resolve));
+                return { ok: true, json: async () => options.fallback };
+            }
             if (options.fail) throw new Error('Network unavailable');
             return { ok: options.ok !== false, json: async () => {
                 if (options.invalidJson) throw new SyntaxError('Invalid JSON');
@@ -123,4 +127,39 @@ test('HTTP errors, invalid JSON, and network failures keep both badges hidden', 
         const { elements } = await render(fixture(), options);
         assert.ok(elements.every(element => element.hidden));
     }
+});
+
+test('a verified bundled snapshot supplies badges when the remote cache is unavailable', async () => {
+    for (const options of [{ ok: false }, { fail: true }, { invalidJson: true }]) {
+        const { elements } = await render(null, { ...options, fallback: fixture() });
+        assert.ok(elements.every(element => !element.hidden));
+        assert.match(elements[0].badge.src, /Citations-7-blue/);
+        assert.match(elements[1].badge.src, /Citations-0-blue/);
+    }
+});
+
+test('only newer valid per-paper data replaces the fallback, in either arrival order', async () => {
+    for (const fallbackLast of [false, true]) {
+        const remote = fixture();
+        remote.updated = '2026-10-30T10:00:00Z';
+        remote.publications[scholarId + ':test-0'].num_citations = 8;
+        remote.publications[scholarId + ':test-1'].num_citations = null;
+        const { elements } = await render(remote, { fallback: fixture(), fallbackLast });
+        assert.match(elements[0].badge.src, /Citations-8-blue/);
+        assert.match(elements[1].badge.src, /Citations-0-blue/);
+        assert.ok(elements.every(element => !element.hidden));
+    }
+    const older = fixture();
+    older.updated = '2026-10-29T00:00:00Z';
+    older.publications[scholarId + ':test-0'].num_citations = 2;
+    const { elements } = await render(older, { fallback: fixture() });
+    assert.match(elements[0].badge.src, /Citations-7-blue/);
+});
+
+test('the checked-in snapshot resolves both real paper titles and IDs', async () => {
+    const snapshot = JSON.parse(fs.readFileSync(path.join(root, 'assets/data/google-scholar-stats.json'), 'utf8'));
+    const { elements } = await render(null, { fail: true, fallback: snapshot });
+    assert.ok(elements.every(element => !element.hidden));
+    assert.equal(new URL(elements[0].href).searchParams.get('citation_for_view'), scholarId + ':qjMakFHDy7sC');
+    assert.equal(new URL(elements[1].href).searchParams.get('citation_for_view'), scholarId + ':Tyk-4Ss8FVUC');
 });
