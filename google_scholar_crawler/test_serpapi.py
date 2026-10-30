@@ -54,6 +54,37 @@ class SerpApiTests(unittest.TestCase):
                 main.fetch_author(self.scholar_id)
             request.assert_not_called()
 
+    def test_empty_counts_become_zero_only_when_the_complete_total_confirms_it(self):
+        for empty in [{}, {"cited_by": {}}, {"cited_by": {"value": None}}]:
+            page = copy.deepcopy(self.page)
+            page["articles"][0]["cited_by"]["value"] = 3
+            page["articles"].append(dict(citation_id=self.scholar_id + ":uncited", title="Uncited paper", **empty))
+            with patch.object(main, "urlopen", return_value=self.response(page)):
+                stats = main.build_stats(main.fetch_author(self.scholar_id), self.scholar_id)
+            self.assertEqual(stats["publications"][self.scholar_id + ":uncited"]["num_citations"], 0)
+            page["cited_by"]["table"][0]["citations"]["all"] = 4
+            with patch.object(main, "urlopen", return_value=self.response(page)), self.assertRaises(ValueError):
+                main.build_stats(main.fetch_author(self.scholar_id), self.scholar_id)
+
+    def test_empty_counts_are_resolved_only_after_all_pages_arrive(self):
+        first = copy.deepcopy(self.page)
+        first["articles"][0]["cited_by"] = {}
+        first["serpapi_pagination"] = {"next": "more"}
+        second = copy.deepcopy(self.page)
+        second["articles"][0].update(citation_id=self.scholar_id + ":paper-2", cited_by={"value": 3})
+        with patch.object(main, "urlopen", side_effect=[self.response(first), self.response(second)]):
+            stats = main.build_stats(main.fetch_author(self.scholar_id), self.scholar_id)
+        self.assertEqual(stats["publications"][self.scholar_id + ":paper-1"]["num_citations"], 0)
+        self.assertEqual(stats["publications"][self.scholar_id + ":paper-2"]["num_citations"], 3)
+
+    def test_invalid_known_counts_cannot_validate_a_missing_count(self):
+        for invalid in [True, "3", -1]:
+            page = copy.deepcopy(self.page)
+            page["articles"][0]["cited_by"]["value"] = invalid
+            page["articles"].append({"citation_id": self.scholar_id + ":uncited", "title": "Uncited paper"})
+            with patch.object(main, "urlopen", return_value=self.response(page)), self.assertRaises(ValueError):
+                main.build_stats(main.fetch_author(self.scholar_id), self.scholar_id)
+
     def test_pagination_uses_fixed_endpoint_and_conservative_timestamp(self):
         first = copy.deepcopy(self.page)
         first["serpapi_pagination"] = {"next": "https://untrusted.example/never-follow-this?api_key=secret"}

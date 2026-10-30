@@ -118,6 +118,15 @@ def fetch_author(scholar_id):
                 "num_citations": article.get("cited_by", {}).get("value"),
             })
         if not data.get("serpapi_pagination", {}).get("next"):
+            missing = [paper for paper in author["publications"] if paper["num_citations"] is None]
+            known = [paper["num_citations"] for paper in author["publications"] if paper["num_citations"] is not None]
+            # Empty counts may denote uncited papers. Confirm against the complete
+            # profile total before accepting zeros; never default unknown data.
+            if (missing and type(author["citedby"]) is int and author["citedby"] >= 0 and
+                    all(type(count) is int and count >= 0 for count in known) and
+                    sum(known) == author["citedby"]):
+                for paper in missing:
+                    paper["num_citations"] = 0
             return author
         start += len(articles)
     raise ValueError("SerpApi exceeded the 10-page limit; keeping the existing cache")
