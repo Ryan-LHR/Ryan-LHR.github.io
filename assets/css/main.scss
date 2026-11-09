@@ -40,6 +40,18 @@
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
 
+@media (max-width: $medium - 1px) {
+    html {
+        scroll-padding-top: 4.5rem;
+    }
+
+    .greedy-nav .hidden-links {
+        max-width: calc(100vw - 2rem);
+        max-height: calc(100vh - 5rem);
+        overflow-y: auto;
+    }
+}
+
 .paper-box {
     display: flex;
     justify-content: left;
@@ -65,6 +77,19 @@
     .paper-box-text{
         max-width: 100%;
         order: 1;
+    }
+
+    @media (max-width: $medium - 1px) {
+        .paper-box-image > div {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .paper-box-image img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
     }
     
     @include breakpoint($medium) {

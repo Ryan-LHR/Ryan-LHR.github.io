@@ -141,13 +141,14 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
   </li>
 </ul>
 
-<div class="github-activity" data-username="Ryan-LHR" hidden>
+<div class="github-activity" data-username="Ryan-LHR" data-fallback-url="{{ '/assets/data/github-activity.json' | relative_url }}" hidden>
   <div class="github-activity-summary">
     <strong>GitHub activity</strong>
     <span class="github-activity-total"></span>
     <span>contributions in the last year</span>
     <span class="github-activity-range"></span>
     <a href="https://github.com/Ryan-LHR">@Ryan-LHR <i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
+    <span class="github-activity-status" role="status"></span>
   </div>
   <div class="github-activity-chart">
     <div class="github-activity-calendar"></div>

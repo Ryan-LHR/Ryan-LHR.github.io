@@ -268,3 +268,38 @@
     display: none;
   }
 }
+
+@media (max-width: $medium - 1px) {
+  .profile_box {
+    display: grid;
+    grid-template-columns: 75px minmax(0, 1fr);
+    gap: 0 12px;
+
+    > .author__avatar {
+      grid-row: span 2;
+    }
+  }
+
+  .author__content {
+    min-width: 0;
+    padding-left: 0;
+  }
+
+  .author__urls-wrapper {
+    margin-left: 0;
+  }
+
+  .author__urls_sm {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    font-size: 1.25em;
+
+    a {
+      display: grid;
+      place-items: center;
+      min-width: 44px;
+      min-height: 44px;
+    }
+  }
+}

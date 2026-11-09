@@ -4,9 +4,26 @@
     var root = document.querySelector('.github-activity');
     if (!root) return;
     var calendar = root.querySelector('.github-activity-calendar');
+    var chart = root.querySelector('.github-activity-chart');
+    var status = root.querySelector('.github-activity-status');
+    var cacheKey = 'github-activity:v1:' + root.dataset.username;
     var dayMs = 86400000;
-    var controller = new AbortController();
-    var timeout = setTimeout(function () { controller.abort(); }, 8000);
+    var lastUpdate = -Infinity;
+    var visibleDays;
+    var observer;
+    var frame = null;
+    var lastWidth = 0;
+
+    function fetchData(url) {
+        var controller = new AbortController();
+        var timeout = setTimeout(function () { controller.abort(); }, 8000);
+        return fetch(url, { signal: controller.signal })
+            .then(function (response) {
+                if (!response.ok) throw new Error('Contribution data unavailable');
+                return response.json();
+            })
+            .finally(function () { clearTimeout(timeout); });
+    }
 
     function rollingYear(data, now) {
         if (!data || !Array.isArray(data.contributions)) throw new Error('Missing contributions');
@@ -74,44 +91,86 @@
         calendar.replaceChildren(fragment);
     }
 
-    function show(days) {
+    function render() {
+        if (frame !== null) return;
+        // Never resize the observed element during ResizeObserver delivery.
+        frame = requestAnimationFrame(function () {
+            frame = null;
+            var width = Math.floor(calendar.getBoundingClientRect().width);
+            if (width < 1 || width === lastWidth) return;
+            lastWidth = width;
+            draw(visibleDays, width);
+        });
+    }
+
+    function show(days, updated, cached) {
+        var timestamp = Date.parse(updated);
+        if (timestamp < lastUpdate || (timestamp === lastUpdate && cached)) return;
+        lastUpdate = timestamp;
+        visibleDays = days;
         var start = days[0].date;
         var end = days[days.length - 1].date;
         root.querySelector('.github-activity-total').textContent = days.reduce(function (total, day) { return total + day.count; }, 0).toLocaleString('en-US');
         root.querySelector('.github-activity-range').textContent = start.replaceAll('-', '.') + ' - ' + end.replaceAll('-', '.');
+        status.textContent = (cached ? 'Cached' : 'Updated') + ': ' + updated.slice(0, 10).replaceAll('-', '.');
+        status.title = 'Last successful fetch: ' + updated.slice(0, 16).replace('T', ' ') + ' UTC. The upstream service may cache its response.';
+        chart.hidden = false;
         root.hidden = false;
-        var frame = null;
-        var lastWidth = 0;
-        var render = function () {
-            if (frame !== null) return;
-            // Never resize the observed element during ResizeObserver delivery.
-            frame = requestAnimationFrame(function () {
-                frame = null;
-                var width = Math.floor(calendar.getBoundingClientRect().width);
-                if (width < 1 || width === lastWidth) return;
-                lastWidth = width;
-                draw(days, width);
+        lastWidth = 0;
+        if (!observer) {
+            observer = new ResizeObserver(render);
+            observer.observe(calendar);
+            window.addEventListener('pagehide', function (event) {
+                if (event.persisted) return;
+                observer.disconnect();
+                if (frame !== null) cancelAnimationFrame(frame);
             });
-        };
-        var observer = new ResizeObserver(render);
-        observer.observe(calendar);
+        }
         render();
-        window.addEventListener('pagehide', function (event) {
-            if (event.persisted) return;
-            observer.disconnect();
-            if (frame !== null) cancelAnimationFrame(frame);
-        });
     }
 
-    fetch('https://github-contributions-api.jogruber.de/v4/' + encodeURIComponent(root.dataset.username) + '?y=last', { signal: controller.signal })
-        .then(function (response) {
-            if (!response.ok) throw new Error('Contribution data unavailable');
-            return response.json();
+    function showSnapshot(snapshot) {
+        if (!snapshot || snapshot.username !== root.dataset.username || typeof snapshot.updated !== 'string') {
+            throw new Error('Invalid contribution cache');
+        }
+        var updated = new Date(snapshot.updated);
+        if (!Number.isFinite(updated.getTime()) || updated.toISOString() !== snapshot.updated || updated > new Date()) {
+            throw new Error('Invalid contribution cache date');
+        }
+        // Validate cached days against their fetch date, not today's rolling window.
+        show(rollingYear(snapshot, updated), snapshot.updated, true);
+    }
+
+    try {
+        var saved = window.localStorage.getItem(cacheKey);
+        if (saved) showSnapshot(JSON.parse(saved));
+    } catch (error) {
+        // Storage may be blocked, full, or contain an invalid older entry.
+    }
+
+    var fallback = root.dataset.fallbackUrl ? fetchData(root.dataset.fallbackUrl)
+        .then(showSnapshot)
+        .catch(function () {}) : Promise.resolve();
+
+    var live = fetchData('https://github-contributions-api.jogruber.de/v4/' + encodeURIComponent(root.dataset.username) + '?y=last')
+        .then(function (data) {
+            var now = new Date();
+            var days = rollingYear(data, now);
+            var snapshot = { username: root.dataset.username, updated: now.toISOString(), contributions: days };
+            show(days, snapshot.updated, false);
+            try {
+                window.localStorage.setItem(cacheKey, JSON.stringify(snapshot));
+            } catch (error) {
+                // A cache write failure must not discard valid live data.
+            }
         })
-        .then(function (data) { show(rollingYear(data, new Date())); })
-        .catch(function () {
-            // A failed or incomplete response must not appear as zero contributions.
-            root.hidden = true;
-        })
-        .finally(function () { clearTimeout(timeout); });
+        .catch(function () {});
+
+    Promise.all([fallback, live]).then(function () {
+        if (visibleDays) return;
+        root.querySelector('.github-activity-total').textContent = '\u2014';
+        status.textContent = 'Contribution data temporarily unavailable';
+        chart.hidden = true;
+        root.hidden = false;
+    });
 }());

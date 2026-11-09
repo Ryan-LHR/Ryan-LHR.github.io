@@ -60,7 +60,9 @@ Some examples:
 
 The final Open-Source Projects section includes a numeric sidebar and contribution calendar.
 `assets/js/github-activity.js` requests public data from [GitHub Contributions API](https://github.com/grubersjoe/github-contributions-api) using `?y=last` (one-hour upstream cache; no token required).
-The graph and total use the same latest 365 available days, including dates across calendar years; the displayed date range makes the snapshot explicit. Missing, incomplete, or stale data hides this optional block instead of displaying a false zero. No GitHub Actions workflow is needed for this component.
+The graph and total use the same latest 365 available days, including dates across calendar years; the displayed date range makes the snapshot explicit. Valid responses are saved in browser local storage, with the checked-in `assets/data/github-activity.json` as a first-visit fallback. The newest validated cache remains visible if the API fails, times out, or returns invalid or stale data. `Cached` and `Updated` show the last successful fetch date, with the full UTC time on hover, not a guaranteed upstream refresh time; cached dates and totals are never advanced artificially. If no valid data source is available, the profile link and an unavailable message remain visible without inventing a zero. Blocked browser storage does not prevent live data or the bundled fallback from loading. No GitHub Actions workflow is needed for this component.
+
+The checked-in fallback is a dated snapshot, not a daily cloud update. Refresh it only after validating a real API response, preserve that response's actual fetch time, then review and publish the file. Tests: `node --test tests/github-activity.test.cjs`.
 
 ## Debug Locally
 
