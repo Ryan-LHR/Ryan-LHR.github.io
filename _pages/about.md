@@ -77,7 +77,7 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 
 
 
-<h2 id="all-publications" class="publications-heading">All Publications <a id="total_cit" hidden><img class="citation-badge" alt="" height="20" decoding="async"></a></h2>
+## All Publications
 
 - [CRICO: A Certified Robustness Framework via Input-Dependent Covariance Optimization](https://openreview.net/forum?id=96YE0mCm3P). Shudi Guo, Bin Liu, Shihai Wang, Tengfei Shi, Yu Liu, **Haoran Li**. The 2026 Conference on Empirical Methods in Natural Language Processing (**EMNLP**, CCF-B), 2026. Accepted.
 

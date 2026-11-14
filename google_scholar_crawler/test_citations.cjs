@@ -74,8 +74,12 @@ test('two real title selectors; counts work without the optional total element',
     assert.match(elements[0].title, /updated 2026-10-30/);
 });
 
-test('All Publications shows the total in a social badge linked to the Scholar profile', async () => {
-    assert.match(about, /<h2 id="all-publications"[^>]*>All Publications <a id="total_cit" hidden><img class="citation-badge"/);
+test('the homepage does not render a total citation badge', () => {
+    assert.match(about, /^## All Publications$/m);
+    assert.doesNotMatch(about, /\bid=["']total_cit["']/);
+});
+
+test('an optional total citation badge links to the Scholar profile', async () => {
     const { total } = await render(fixture(), { total: true });
     const url = new URL(total.badge.src);
     assert.equal(total.hidden, false);
