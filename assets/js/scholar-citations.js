@@ -6,7 +6,8 @@
     var totalCitation = document.getElementById('total_cit');
     if (!citationEles.length && !totalCitation) return;
 
-    var scholarId = new URL(script.dataset.scholarUrl).searchParams.get('user');
+    var scholarUrl = new URL(script.dataset.scholarUrl);
+    var scholarId = scholarUrl.searchParams.get('user');
     var latestTotalUpdate = -Infinity;
     var citationUpdates = new WeakMap();
 
@@ -18,13 +19,27 @@
         return typeof title === 'string' ? title.normalize('NFKC').toLowerCase().replace(/[^a-z0-9]/g, '') : '';
     }
 
+    function showBadge(element, label, count, updated) {
+        element.title = 'Google Scholar; updated ' + new Date(updated).toISOString().slice(0, 10) + ' (UTC)';
+        var badge = element.querySelector('.citation-badge');
+        var badgeUrl = new URL('https://img.shields.io/badge/' + label.replace(' ', '_') + '-' + count + '-blue');
+        badgeUrl.searchParams.set('style', 'social');
+        badgeUrl.searchParams.set('logo', 'googlescholar');
+        badgeUrl.searchParams.set('logoColor', '333');
+        badge.alt = 'Google Scholar ' + label.toLowerCase() + ': ' + count;
+        badge.onload = function () { element.hidden = false; };
+        badge.onerror = function () { element.hidden = true; };
+        badge.src = badgeUrl.toString();
+    }
+
     function showStats(data) {
         if (!data || data.scholar_id !== scholarId || !data.publications ||
             !Number.isFinite(Date.parse(data.updated))) return;
         var updated = Date.parse(data.updated);
         if (totalCitation && validCount(data.citedby) && updated > latestTotalUpdate) {
             latestTotalUpdate = updated;
-            totalCitation.textContent = data.citedby;
+            totalCitation.href = scholarUrl.toString();
+            showBadge(totalCitation, 'Total citations', data.citedby, updated);
         }
         citationEles.forEach(function (element) {
             var title = normalizeTitle(element.dataset.paperTitle);
@@ -46,17 +61,8 @@
             href.searchParams.set('user', scholarId);
             href.searchParams.set('citation_for_view', paperId);
             element.href = href.toString();
-            element.title = 'Google Scholar; updated ' + new Date(data.updated).toISOString().slice(0, 10) + ' (UTC)';
             element.setAttribute('aria-label', 'Google Scholar citations: ' + paper.num_citations + '. ' + element.dataset.paperTitle);
-            var badge = element.querySelector('.citation-badge');
-            var badgeUrl = new URL('https://img.shields.io/badge/Citations-' + paper.num_citations + '-blue');
-            badgeUrl.searchParams.set('style', 'social');
-            badgeUrl.searchParams.set('logo', 'googlescholar');
-            badgeUrl.searchParams.set('logoColor', '333');
-            badge.alt = 'Google Scholar citations: ' + paper.num_citations;
-            badge.onload = function () { element.hidden = false; };
-            badge.onerror = function () { element.hidden = true; };
-            badge.src = badgeUrl.toString();
+            showBadge(element, 'Citations', paper.num_citations, updated);
         });
     }
 

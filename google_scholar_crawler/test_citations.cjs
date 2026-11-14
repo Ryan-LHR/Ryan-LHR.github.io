@@ -22,7 +22,7 @@ function fixture() {
 }
 
 async function render(data, options = {}) {
-    const elements = titles.map(paperTitle => ({
+    const makeElement = paperTitle => ({
         dataset: { paperTitle }, hidden: true, attrs: {},
         badge: {
             alt: '',
@@ -35,8 +35,9 @@ async function render(data, options = {}) {
         },
         querySelector() { return this.badge; },
         setAttribute(key, value) { this.attrs[key] = value; },
-    }));
-    const total = options.total ? { textContent: '' } : null;
+    });
+    const elements = titles.map(makeElement);
+    const total = options.total ? makeElement() : null;
     const context = {
         URL, AbortController, setTimeout, clearTimeout,
         document: {
@@ -73,15 +74,24 @@ test('two real title selectors; counts work without the optional total element',
     assert.match(elements[0].title, /updated 2026-10-30/);
 });
 
-test('optional total is safe', async () => {
+test('All Publications shows the total in a social badge linked to the Scholar profile', async () => {
+    assert.match(about, /<h2 id="all-publications"[^>]*>All Publications <a id="total_cit" hidden><img class="citation-badge"/);
     const { total } = await render(fixture(), { total: true });
-    assert.equal(total.textContent, 7);
+    const url = new URL(total.badge.src);
+    assert.equal(total.hidden, false);
+    assert.equal(url.pathname, '/badge/Total_citations-7-blue');
+    assert.equal(url.searchParams.get('style'), 'social');
+    assert.equal(url.searchParams.get('logo'), 'googlescholar');
+    assert.equal(total.badge.alt, 'Google Scholar total citations: 7');
+    assert.equal(total.href, 'https://scholar.google.com/citations?user=' + scholarId);
+    assert.match(total.title, /updated 2026-10-30/);
 });
 
 test('a pending or failed badge image stays hidden', async () => {
     for (const options of [{ badgeFails: true }, { badgePending: true }]) {
-        const { elements } = await render(fixture(), options);
+        const { elements, total } = await render(fixture(), { ...options, total: true });
         assert.ok(elements.every(element => element.hidden));
+        assert.equal(total.hidden, true);
     }
 });
 
@@ -106,7 +116,10 @@ test('unknown counts never become zero', async () => {
     for (const count of [undefined, null, -1, '0', true, 1.5]) {
         const data = fixture();
         data.publications[scholarId + ':test-0'].num_citations = count;
-        assert.equal((await render(data)).elements[0].hidden, true);
+        data.citedby = count;
+        const { elements, total } = await render(data, { total: true });
+        assert.equal(elements[0].hidden, true);
+        assert.equal(total.hidden, true);
     }
 });
 
@@ -131,10 +144,24 @@ test('HTTP errors, invalid JSON, and network failures keep both badges hidden', 
 
 test('a verified bundled snapshot supplies badges when the remote cache is unavailable', async () => {
     for (const options of [{ ok: false }, { fail: true }, { invalidJson: true }]) {
-        const { elements } = await render(null, { ...options, fallback: fixture() });
+        const { elements, total } = await render(null, { ...options, fallback: fixture(), total: true });
         assert.ok(elements.every(element => !element.hidden));
         assert.match(elements[0].badge.src, /Citations-7-blue/);
         assert.match(elements[1].badge.src, /Citations-0-blue/);
+        assert.equal(total.hidden, false);
+        assert.match(total.badge.src, /Total_citations-7-blue/);
+    }
+});
+
+test('the total uses the latest valid count, including zero, regardless of response order', async () => {
+    for (const fallbackLast of [false, true]) {
+        const remote = { ...fixture(), updated: '2026-10-30T10:00:00Z', citedby: 0 };
+        const options = { fallback: fixture(), fallbackLast, total: true };
+        let { total } = await render(remote, options);
+        assert.equal(total.hidden, false);
+        assert.match(total.badge.src, /Total_citations-0-blue/);
+        ({ total } = await render({ ...remote, citedby: null }, options));
+        assert.match(total.badge.src, /Total_citations-7-blue/);
     }
 });
 

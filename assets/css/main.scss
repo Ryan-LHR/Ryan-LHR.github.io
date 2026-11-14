@@ -126,7 +126,14 @@
     gap: 10px;
 }
 
+.publications-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .page__content .repo-stars,
+.page__content #total_cit:not([hidden]),
 .page__content .show_paper_citations:not([hidden]) {
     display: inline-flex;
     flex: 0 0 auto;
