@@ -129,16 +129,26 @@ I am a Ph.D. candidate in Systems Engineering at Beihang University, advised by 
 # <i class="fas fa-code" aria-hidden="true"></i> Open-Source Projects
 {: #open-source-projects}
 
+{% assign dnn_paper_browser = 'https://ryan-lhr.github.io/Awesome-DNN-Testing-And-Repair/' %}
+
 <ul class="open-source-list">
   <li>
     <div class="project-heading">
       <div class="project-name">
         <a href="https://github.com/Ryan-LHR/Awesome-DNN-Testing-And-Repair"><strong>Awesome DNN Testing and Repair</strong></a>
-        <a class="repo-stars" href="https://github.com/Ryan-LHR/Awesome-DNN-Testing-And-Repair/stargazers" aria-label="Awesome DNN Testing and Repair GitHub stars"><img src="https://img.shields.io/github/stars/Ryan-LHR/Awesome-DNN-Testing-And-Repair?style=social" alt="Awesome DNN Testing and Repair GitHub stars" height="20" loading="lazy" decoding="async"></a>
+        <span class="project-links">
+          <a class="repo-stars" href="https://github.com/Ryan-LHR/Awesome-DNN-Testing-And-Repair/stargazers" aria-label="Awesome DNN Testing and Repair GitHub stars"><img src="https://img.shields.io/github/stars/Ryan-LHR/Awesome-DNN-Testing-And-Repair?style=social" alt="Awesome DNN Testing and Repair GitHub stars" height="20" loading="lazy" decoding="async"></a>
+          <a class="project-browse" href="{{ dnn_paper_browser }}"><i class="fas fa-globe" aria-hidden="true"></i> Browse Papers</a>
+        </span>
       </div>
       <span class="project-kind">Research Resource</span>
     </div>
-    <p>A curated reading list for deep neural network testing and repair, covering coverage metrics, test generation, test selection and prioritization, and model repair. Includes surveys and empirical studies, with publication details and links to available papers and code.</p>
+    <div class="project-body">
+      <p>A curated reading list for deep neural network testing and repair, covering coverage metrics, test generation, test selection and prioritization, and model repair. Includes surveys and empirical studies, with publication details and links to available papers and code.</p>
+      <a class="project-preview" href="{{ dnn_paper_browser }}">
+        <img src="{{ '/images/dnn-paper-browser-preview.png' | relative_url }}" alt="Browse the DNN paper collection: website preview in light and dark themes" width="1000" height="748" loading="lazy" decoding="async">
+      </a>
+    </div>
   </li>
 </ul>
 
