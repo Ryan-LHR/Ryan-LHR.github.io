@@ -1,7 +1,7 @@
 {
   "scholar_id": "wr2qnW0AAAAJ",
   "name": "Haoran Li",
-  "updated": "2026-11-19T17:09:16+00:00",
+  "updated": "2026-11-20T16:47:21+00:00",
   "citedby": 22,
   "publications": {
     "wr2qnW0AAAAJ:9yKSN-GCB0IC": {
@@ -32,6 +32,13 @@
       },
       "num_citations": 1
     },
+    "wr2qnW0AAAAJ:zYLM7Y9cAGgC": {
+      "author_pub_id": "wr2qnW0AAAAJ:zYLM7Y9cAGgC",
+      "bib": {
+        "title": "A slice-level software vulnerability detection method based on hyperbolic gated graph neural network"
+      },
+      "num_citations": 0
+    },
     "wr2qnW0AAAAJ:Tyk-4Ss8FVUC": {
       "author_pub_id": "wr2qnW0AAAAJ:Tyk-4Ss8FVUC",
       "bib": {
@@ -43,13 +50,6 @@
       "author_pub_id": "wr2qnW0AAAAJ:Y0pCki6q_DkC",
       "bib": {
         "title": "AARN3: A software defect prediction model using atomic association rule networks based on three distinct minimum support thresholds"
-      },
-      "num_citations": 0
-    },
-    "wr2qnW0AAAAJ:zYLM7Y9cAGgC": {
-      "author_pub_id": "wr2qnW0AAAAJ:zYLM7Y9cAGgC",
-      "bib": {
-        "title": "A slice-level software vulnerability detection method based on hyperbolic gated graph neural network"
       },
       "num_citations": 0
     }
