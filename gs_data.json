@@ -1,8 +1,8 @@
 {
   "scholar_id": "wr2qnW0AAAAJ",
   "name": "Haoran Li",
-  "updated": "2026-11-25T18:30:10+00:00",
-  "citedby": 22,
+  "updated": "2026-11-26T18:12:31+00:00",
+  "citedby": 23,
   "publications": {
     "wr2qnW0AAAAJ:9yKSN-GCB0IC": {
       "author_pub_id": "wr2qnW0AAAAJ:9yKSN-GCB0IC",
@@ -25,6 +25,13 @@
       },
       "num_citations": 1
     },
+    "wr2qnW0AAAAJ:Y0pCki6q_DkC": {
+      "author_pub_id": "wr2qnW0AAAAJ:Y0pCki6q_DkC",
+      "bib": {
+        "title": "AARN3: A software defect prediction model using atomic association rule networks based on three distinct minimum support thresholds"
+      },
+      "num_citations": 1
+    },
     "wr2qnW0AAAAJ:UeHWp8X0CEIC": {
       "author_pub_id": "wr2qnW0AAAAJ:UeHWp8X0CEIC",
       "bib": {
@@ -43,13 +50,6 @@
       "author_pub_id": "wr2qnW0AAAAJ:Tyk-4Ss8FVUC",
       "bib": {
         "title": "When Ambiguity Meets Atypicality: Dual-Perspective Test Input Prioritization for DNNs"
-      },
-      "num_citations": 0
-    },
-    "wr2qnW0AAAAJ:Y0pCki6q_DkC": {
-      "author_pub_id": "wr2qnW0AAAAJ:Y0pCki6q_DkC",
-      "bib": {
-        "title": "AARN3: A software defect prediction model using atomic association rule networks based on three distinct minimum support thresholds"
       },
       "num_citations": 0
     }
